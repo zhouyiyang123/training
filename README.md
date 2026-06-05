@@ -1,82 +1,72 @@
-# Define the content of the Markdown Comprehensive Practice Guide
-md_content = """# Markdown Full-Featured Practice Guide / Markdown 全功能练习与语法向导
+# Training Repository / 训练仓库
 
-欢迎来到 Markdown 练习文件！本文件旨在全面涵盖 Markdown 的绝大部分核心与高级语法知识点。通过阅读、编辑（查看源码）以及对照练习，你将能够熟练掌握 Markdown 的高效排版技巧。
-
----
-
-## 1. 标题文本 (Headings)
-
-Markdown 使用不同数量的 `#` 号来表示 1 到 6 级的标题。
-
-# 一级标题 (H1)
-## 二级标题 (H2)
-### 三级标题 (H3)
-#### 四级标题 (H4)
-##### 五级标题 (H5)
-###### 六级标题 (H6)
-
-> **练习提示**：在多数编辑器中，建议在 `#` 与标题文本之间保留一个空格。
+欢迎来到本训练仓库！本项目已经过结构重构，新增了猜数字小游戏、单元测试以及 CI/CD 自动化工作流。
 
 ---
 
-## 2. 文本样式与格式化 (Text Formatting)
+## 📁 仓库结构 (Repository Structure)
 
-通过特定的符号，你可以为文本添加加粗、斜体、删除线等样式。
+重构后的仓库结构如下所示：
 
-- **粗体 (Bold)**：使用双星号 `**加粗文本**` 或双下划线 `__加粗文本__` 效果：**这是加粗的文字**。
-- *斜体 (Italic)*：使用单星号 `*斜体文本*` 或单下划线 `_斜体文本_` 效果：*这是斜体的文字*。
-- ***粗斜体 (Bold & Italic)***：使用三星号 `***粗斜体***` 效果：***这是又粗又斜的文字***。
-- ~~删除线 (Strikethrough)~~：使用双波浪线 `~~删除线~~` 效果：~~这是被划掉的错误内容~~。
-- 高亮 (Highlight)：部分编辑器支持使用双等号 `==高亮文本==`（GFM 扩展语法）。
-- 下划线 (Underline)：Markdown 原生不支持，但可以通过 HTML 标签实现：<u>带有下划线的文本</u>。
-
----
-
-## 3. 列表 (Lists)
-
-### 3.1 无序列表
-使用减号 `-`、加号 `+` 或星号 `*` 后跟空格：
-- 选项一
-- 选项二
-  - 子选项二 A (前面缩进两个或四个空格)
-  - 子选项二 B
-- 选项三
-
-### 3.2 有序列表
-使用数字后跟一个英文句点和空格：
-1. 第一步：打开编辑器
-2. 第二步：编写 Markdown 代码
-   1. 嵌套步骤 A
-   2. 嵌套步骤 B
-3. 第三步：导出为 PDF 或 HTML
-
-### 3.3 任务列表 (Task Lists / Checkboxes)
-常用于项目管理或 To-Do List：
-- [x] 已完成的任务 1
-- [x] 已完成的任务 2
-- [ ] 未完成的任务 3
-- [ ] 正在规划的任务 4
+```text
+.
+├── .github/
+│   └── workflows/
+│       └── ci.yml             # GitHub Actions CI/CD 工作流配置文件
+├── docs/
+│   └── markdown_training.md   # Markdown 全功能练习与语法向导（原 README 迁移并完善）
+├── guess_game/
+│   ├── __init__.py            # 游戏包初始化文件
+│   └── game.py                # 猜数字小游戏的核心逻辑与 CLI 启动器
+├── tests/
+│   └── test_game.py           # 针对小游戏逻辑和 CLI 的单元测试
+├── README.md                  # 本说明文件
+└── requirements.txt           # 依赖项声明（开发/测试相关依赖）
+```
 
 ---
 
-## 4. 区块引用 (Blockquotes)
+## 🎮 猜数字小游戏 (Guess Number Game)
 
-使用大于号 `>` 来表示引用。区块引用可以嵌套。
+我们在 [guess_game/game.py](file:///D:/Study/code/other/training/guess_game/game.py) 中实现了一个非常基础且有趣的猜大小数字游戏。
 
-> 这是一个基础的区块引用。
-> 它可以跨越多行，只要每行开头都有大于号。
-> 
-> > 这是嵌套的二级引用，用于更深层次的补充说明。
-> > —— 某位不愿透漏姓名的技术专家
+### 游戏规则
+1. 游戏启动后，程序会随机生成一个 1 到 100 之间的整数（你可以通过参数自定义范围）。
+2. 你一共有 10 次机会进行猜测（可通过参数自定义最大猜测次数）。
+3. 每次输入猜测的数字后，程序会提示你的猜测是 **太大** 还是 **太小**。
+4. 如果你在次数限制内猜中数字，则获得胜利；否则游戏结束。
+
+### 运行游戏
+确保你安装了 Python 3 并处于仓库根目录下，运行以下命令即可启动游戏：
+```bash
+python -m guess_game.game
+```
 
 ---
 
-## 5. 代码表示 (Code)
+## 🧪 单元测试 (Unit Tests)
 
-### 5.1 行内代码 (Inline Code)
-使用单反引号 \` 包裹，用于在正文中提及变量、函数名或短命令。
-例如：请使用 `pip install markdown` 命令来安装相关库，然后运行 `main.py` 文件。
+所有的单元测试均在 [tests/test_game.py](file:///D:/Study/code/other/training/tests/test_game.py) 中编写，使用了 Python 标准库的 `unittest` 模块，无需额外安装依赖即可运行。
 
-### 5.2 代码块 (Code Blocks)
-使用三个反引号 \`\`\` 包裹，并在开头指定编程语言，以实现语法高亮。`
+### 运行测试
+在仓库根目录下，使用以下命令运行测试：
+```bash
+python -m unittest discover -s tests
+```
+
+---
+
+## 🚀 CI/CD 持续集成 (Continuous Integration)
+
+本仓库配置了基于 **GitHub Actions** 的 CI/CD 自动化工作流：
+- **配置文件**: [.github/workflows/ci.yml](file:///D:/Study/code/other/training/.github/workflows/ci.yml)
+- **触发条件**: 
+  - 当有代码推送（`push`）到 `main` 或 `chengtianxu/helper` 分支时。
+  - 当针对 `main` 分支提交拉取请求（`pull_request`）时。
+- **工作内容**: 自动化拉取代码、配置 Python 环境、安装 `requirements.txt` 中的依赖，并自动运行单元测试确保代码质量。
+
+---
+
+## 📝 Markdown 学习文档
+原本位于根目录的 Markdown 语法练习文件已迁移并完善，请参阅：
+- [Markdown 语法全功能练习向导](file:///D:/Study/code/other/training/docs/markdown_training.md)
