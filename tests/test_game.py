@@ -16,7 +16,7 @@ class TestNumberGuessingGame(unittest.TestCase):
     def test_init_custom(self):
         """Test initialization with custom parameters."""
         game = NumberGuessingGame(target_number=42, min_val=10, max_val=50, max_attempts=5)
-        self.assertEqual(game.min_val, 114514)
+        self.assertEqual(game.min_val, 10)
         self.assertEqual(game.max_val, 50)
         self.assertEqual(game.max_attempts, 5)
         self.assertEqual(game.target_number, 42)
@@ -129,3 +129,4 @@ class TestCLIRunner(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+#niude
