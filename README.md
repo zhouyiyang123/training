@@ -14,6 +14,7 @@
 │   └── workflows/
 │       └── ci.yml             # GitHub Actions CI/CD 工作流配置文件
 ├── docs/
+│   ├── git_manual.md          # Git 常用指令与工作流说明书
 │   └── markdown_training.md   # Markdown 全功能练习与语法向导（原 README 迁移并完善）
 ├── guess_game/
 │   ├── __init__.py            # 游戏包初始化文件
@@ -61,12 +62,13 @@ python -m unittest discover -s tests
 本仓库配置了基于 **GitHub Actions** 的 CI/CD 自动化工作流：
 - **配置文件**: [.github/workflows/ci.yml](file:///D:/Study/code/other/training/.github/workflows/ci.yml)
 - **触发条件**: 
-  - 当有代码推送（`push`）到 `main` 或 `chengtianxu/helper` 分支时。
+  - 当有代码推送（`push`）到任何分支时。
   - 当针对 `main` 分支提交拉取请求（`pull_request`）时。
 - **工作内容**: 自动化拉取代码、配置 Python 环境、安装 `requirements.txt` 中的依赖，并自动运行单元测试确保代码质量。
 
 ---
 
-## 📝 Markdown 学习文档
-原本位于根目录的 Markdown 语法练习文件已迁移并完善，请参阅：
+## 📝 Markdown 与 Git 学习文档
+原本位于根目录的 Markdown 语法练习文件已迁移并完善，同时新增了 Git 说明书：
 - [Markdown 语法全功能练习向导](file:///D:/Study/code/other/training/docs/markdown_training.md)
+- [Git 常用指令与工作流说明书](file:///D:/Study/code/other/training/docs/git_manual.md)
